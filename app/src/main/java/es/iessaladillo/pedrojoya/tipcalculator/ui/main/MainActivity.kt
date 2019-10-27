@@ -17,7 +17,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initsViews() {
-        txtBill.addTextChangedListener(object: TextWatcher {
+        txtBill.addTextChangedListener(object : TextWatcher {
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 calculateAll(true)
             }
@@ -30,7 +30,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        txtDiners.addTextChangedListener(object :TextWatcher{
+        txtDiners.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
             }
 
@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
             }
 
         })
-        txtPercentage.addTextChangedListener(object: TextWatcher{
+        txtPercentage.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
 
             }
@@ -56,12 +56,13 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        btnResetTip.setOnClickListener {reset(true)}
-        btnResetDiners.setOnClickListener {reset(false)}
+        btnResetTip.setOnClickListener { reset(true) }
+        btnResetDiners.setOnClickListener { reset(false) }
     }
 
     private fun calculateAll(b: Boolean) {
 
+        validarDatos()
 
         val tipCalculator = TipCalculator(
             txtBill.text.toString().toFloat(),
@@ -69,24 +70,47 @@ class MainActivity : AppCompatActivity() {
             txtDiners.text.toString().toInt()
         )
 
-        if (b){
-            txtTip.setText(String.format("%.2f",tipCalculator.calculateTip()))
-            txtTotal.setText(String.format("%.2f",tipCalculator.calculateTotal()))
-            txtPerDiner.setText(String.format("%.2f",tipCalculator.calculatePerDiner()))
-            txtPerDinerRounded.setText(String.format("%.2f",tipCalculator.calculatePerDinerRounded()))
-        }else{
-            txtPerDiner.setText(String.format("%.2f",tipCalculator.calculatePerDiner()))
-            txtPerDinerRounded.setText(String.format("%.2f",tipCalculator.calculatePerDinerRounded()))
+        if (b) {
+            txtTip.setText(String.format("%.2f", tipCalculator.calculateTip()))
+            txtTotal.setText(String.format("%.2f", tipCalculator.calculateTotal()))
+            txtPerDiner.setText(String.format("%.2f", tipCalculator.calculatePerDiner()))
+            txtPerDinerRounded.setText(
+                String.format(
+                    "%.2f",
+                    tipCalculator.calculatePerDinerRounded()
+                )
+            )
+        } else {
+            txtPerDiner.setText(String.format("%.2f", tipCalculator.calculatePerDiner()))
+            txtPerDinerRounded.setText(
+                String.format(
+                    "%.2f",
+                    tipCalculator.calculatePerDinerRounded()
+                )
+            )
         }
+    }
+
+    private fun validarDatos() {
+
+        if (txtBill.text.toString().equals(""))
+            txtBill.setText(R.string.normalValueEditText)
+
+        if (txtPercentage.text.toString().equals(""))
+            txtPercentage.setText(R.string.percentage_defect_tip)
+
+        if (txtDiners.text.toString().equals(""))
+            txtDiners.setText(R.string.dinersDefectValue)
+
     }
 
 
     private fun reset(b: Boolean) {
-        if (b){
+        if (b) {
             txtBill.setText(R.string.normalValueEditText)
             txtPercentage.setText(R.string.percentage_defect_tip)
-        }else{
-            txtDiners.setText(R.string.number_diners)
+        } else {
+            txtDiners.setText(R.string.dinersDefectValue)
             txtPerDiner.setText(R.string.normalValueEditText)
             txtPerDinerRounded.setText(R.string.number_diners)
         }

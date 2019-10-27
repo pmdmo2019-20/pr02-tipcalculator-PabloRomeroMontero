@@ -281,7 +281,7 @@
         android:selectAllOnFocus="true"
         android:ems="10"
         android:inputType="number"
-        android:text="@string/number_diners"
+        android:text="@string/dinersDefectValue"
         android:textAlignment="textEnd"
         app:layout_constraintBottom_toBottomOf="@+id/txtPerDiner"
         app:layout_constraintEnd_toStartOf="@id/txtPerDiner"

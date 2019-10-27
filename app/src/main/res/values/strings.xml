@@ -10,4 +10,5 @@
     <string name="total_main_lbl">Total</string>
     <string name="lbl_main_rounded">Rounded</string>
     <string name="percentage_defect_tip">10.00</string>
+    <string name="dinersDefectValue">1</string>
 </resources>
