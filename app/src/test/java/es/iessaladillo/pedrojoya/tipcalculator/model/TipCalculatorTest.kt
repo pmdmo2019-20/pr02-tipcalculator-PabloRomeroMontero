@@ -13,54 +13,66 @@ class TipCalculatorTest {
     fun `should throw IllegalArgumentException when bill is negative`() {
         assertThrows(IllegalArgumentException::class.java) { TipCalculator(-1f, 10f, 1) }
     }
+}
 
-    @DisplayName("Should throw IllegalArgumentException when percentage is negative")
-    @Test
-    fun `should throw IllegalArgumentException when percentage is negative`() {
-        assertThrows(IllegalArgumentException::class.java) { TipCalculator(11f, -1f, 1) }
+@DisplayName("Should throw IllegalArgumentException when percentage is negative")
+@Test
+fun `should throw IllegalArgumentException when percentage is negative`() {
+    assertThrows(IllegalArgumentException::class.java) { TipCalculator(11f, -1f, 1) }
+}
+
+@DisplayName("Should throw IllegalArgumentException when diners is not positive")
+@ParameterizedTest
+@ValueSource(ints = [-1, 0])
+fun `should throw IllegalArgumentException when diners is not positive`(diners: Int) {
+    assertThrows(IllegalArgumentException::class.java) { TipCalculator(1f, 10f, diners) }
+}
+
+@DisplayName("Should calculate total properly")
+@Test
+fun `should calculate total properly`() {
+    assertThrows(IllegalArgumentException::class.java) {
+        TipCalculator(1f, 10f, 1).calculateTotal()
     }
+}
 
-    @DisplayName("Should throw IllegalArgumentException when diners is not positive")
-    @ParameterizedTest
-    @ValueSource(ints = [-1, 0])
-    fun `should throw IllegalArgumentException when diners is not positive`(diners: Int) {
-        assertThrows(IllegalArgumentException::class.java) { TipCalculator(1f, 10f, diners) }
+@DisplayName("Should calculate total properly with bill 0")
+@Test
+fun `should calculate total properly with bill 0`() {
+    assertThrows(IllegalArgumentException::class.java) {
+        TipCalculator(0f, 10f, 1).calculateTotal()
     }
+}
 
-    @DisplayName("Should calculate total properly")
-    @Test
-    fun `should calculate total properly`() {
-        // TODO
+@DisplayName("Should calculate total properly with percentage 0")
+@Test
+fun `should calculate total properly with percentage 0`() {
+    assertThrows(IllegalArgumentException::class.java) {
+        TipCalculator(1f, 0f, 1).calculateTotal()
     }
+}
 
-    @DisplayName("Should calculate total properly with bill 0")
-    @Test
-    fun `should calculate total properly with bill 0`() {
-        // TODO
+@DisplayName("Should calculate perDiner properly")
+@Test
+fun `should calculate perDiner properly`() {
+    assertThrows(IllegalArgumentException::class.java) {
+        TipCalculator(1f, 10f, 1).calculatePerDiner()
     }
+}
 
-    @DisplayName("Should calculate total properly with percentage 0")
-    @Test
-    fun `should calculate total properly with percentage 0`() {
-        // TODO
+@DisplayName("Should calculate perDinerRounded properly")
+@Test
+fun `should calculate perDinerRounded properly`() {
+    assertThrows(IllegalArgumentException::class.java) {
+        TipCalculator(1f, 10f, 1).calculatePerDinerRounded()
     }
+}
 
-    @DisplayName("Should calculate perDiner properly")
-    @Test
-    fun `should calculate perDiner properly`() {
-        // TODO
+@DisplayName("Should calculate perDinerRounded properly when perDinerRounded has 00 as cents")
+@Test
+fun `should calculate perDinerRounded properly when perDinerRounded has 00 as cents`() {
+    assertThrows(IllegalArgumentException::class.java) {
+        TipCalculator(1f, 10f, 1)
+
     }
-
-    @DisplayName("Should calculate perDinerRounded properly")
-    @Test
-    fun `should calculate perDinerRounded properly`() {
-        // TODO
-    }
-
-    @DisplayName("Should calculate perDinerRounded properly when perDinerRounded has 00 as cents")
-    @Test
-    fun `should calculate perDinerRounded properly when perDinerRounded has 00 as cents`() {
-        // TODO
-    }
-
 }
